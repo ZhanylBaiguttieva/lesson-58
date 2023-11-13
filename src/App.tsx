@@ -2,10 +2,16 @@
 import './App.css';
 import Modal from './components/Modal/Modal';
 import {useState} from 'react';
+import Alert from './components/Alert/Alert';
 
 
 function App() {
   const [showModal, setShowModal] = useState(false);
+
+  const closeAlert = () => {
+
+  };
+
 
   return (
     <>
@@ -17,6 +23,13 @@ function App() {
         </Modal>
         <button className="w-100 btn btn-light" onClick={() => setShowModal(true)}>Demonstrate</button>
       </div>
+      <div className="alert alert-primary mt-3">
+        <Alert type="warning" onDismiss={closeAlert}/>
+      </div>
+      <div className="alert alert-danger">
+        <Alert type="primary"/>
+      </div>
+
     </>
   );
 }

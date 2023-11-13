@@ -8,16 +8,31 @@ import React from 'react';
 
 interface Props extends React.PropsWithChildren{
   type: string;
-  onDismiss: () => void;
+  onDismiss ? : () => void;
 }
 const Alert: React.FC<Props> = ({type, onDismiss, children}) => {
 
-  return (
+  let buttonAlert = (
     <div className={type} role="alert">
       This is a warning type alert!
-      <button onClick={onDismiss}>Close</button>
-      {children}
+    <button className="btn btn-transparent border-0 float-end">X</button>
     </div>
+  );
+
+  if(onDismiss === undefined) {
+    buttonAlert = (
+      <>
+        <div className={type} role="alert">
+          This is a warning type alert!
+          {children}
+        </div>
+      </>
+    );
+  }
+  return (
+    <>
+      {buttonAlert}
+    </>
   );
 };
 
