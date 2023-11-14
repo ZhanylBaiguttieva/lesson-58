@@ -1,17 +1,19 @@
-
-import './App.css';
-import Modal from './components/Modal/Modal';
 import {useState} from 'react';
+import Modal from './components/Modal/Modal';
 import Alert from './components/Alert/Alert';
-
+import './App.css';
 
 function App() {
   const [showModal, setShowModal] = useState(false);
-
   const closeAlert = () => {
-
+    const  div  = document.getElementById('show-alert');
+    if(div !== null) {
+      if(div.style.display === 'block') {
+          div.style.display = 'none';
+      }
+    }
+    return false;
   };
-
 
   return (
     <>
@@ -23,13 +25,10 @@ function App() {
         </Modal>
         <button className="w-100 btn btn-light" onClick={() => setShowModal(true)}>Demonstrate</button>
       </div>
-      <div className="alert alert-primary mt-3">
-        <Alert type="warning" onDismiss={closeAlert}/>
+      <div className="container mt-3">
+        <Alert type="alert alert-warning" onDismiss={closeAlert} children={'This is warning alert'} />
+        <Alert type="alert alert-primary" children={'This is primary alert'} />
       </div>
-      <div className="alert alert-danger">
-        <Alert type="primary"/>
-      </div>
-
     </>
   );
 }

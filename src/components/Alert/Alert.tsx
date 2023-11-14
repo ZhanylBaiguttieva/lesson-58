@@ -1,21 +1,15 @@
-// let cart = (
-//   <div className="alert alert-primary">
-//     Cart is empty!Add something!
-//   </div>
-// );
-
 import React from 'react';
 
 interface Props extends React.PropsWithChildren{
   type: string;
-  onDismiss ? : () => void;
+  onDismiss ? : React.MouseEventHandler;
 }
 const Alert: React.FC<Props> = ({type, onDismiss, children}) => {
 
   let buttonAlert = (
-    <div className={type} role="alert">
-      This is a warning type alert!
-    <button className="btn btn-transparent border-0 float-end">X</button>
+    <div className={type} role="alert" id="show-alert" style={{display: "block"}} >
+      {children}
+    <button className="btn btn-transparent border-0 float-end" onClick={onDismiss}>X</button>
     </div>
   );
 
@@ -23,7 +17,6 @@ const Alert: React.FC<Props> = ({type, onDismiss, children}) => {
     buttonAlert = (
       <>
         <div className={type} role="alert">
-          This is a warning type alert!
           {children}
         </div>
       </>
